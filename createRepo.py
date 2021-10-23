@@ -45,6 +45,8 @@ try:
     os.system("git commit -m 'Initial Commit'")
     os.system('git branch -m main')
     os.system('git push -u origin main')
+    os.system('git checkout -b main_macos')
+    os.system('git push -u origin main_macos')
 except FileExistsError as f:
     print(f)
 except Exception as e:
