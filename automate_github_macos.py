@@ -4,7 +4,7 @@ import requests
 import argparse
 import os
 from pprint import pprint
-from secrets import githubAPIToken
+from secrets import githubAPIToken, REPO_PATH
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--name", "-n", type=str,dest="name",required=True)
@@ -34,7 +34,7 @@ except Exception as e:
 
 # creating local repository and connect with the created remote one from above
 try:
-    repoPath = '/Users/leozhang/Documents/GitHub/'
+    repoPath = REPO_PATH
     os.chdir(repoPath)
     os.system(f'mkdir {repoName}')
     os.chdir(f'{repoPath}{repoName}')
@@ -46,8 +46,8 @@ try:
     os.system("git commit -m 'Initial Commit'")
     os.system('git branch -m main')
     os.system('git push -u origin main')
-    os.system('git checkout -b main_macos')
-    os.system('git push -u origin main_macos')
+   # os.system('git checkout -b main_macos')
+   # os.system('git push -u origin main_macos')
 except FileExistsError as f:
     print(f)
 except Exception as e:
