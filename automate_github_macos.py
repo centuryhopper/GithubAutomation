@@ -42,6 +42,8 @@ try:
     os.system(f'git remote add origin https://github.com/leozhang1/{repoName}.git')
     os.system(f"echo '# {repoName}' >> README.md")
     os.system(f"echo '.DS_Store' >> .gitignore")
+    os.system(f"echo '__pycache__' >> .gitignore")
+    os.system(f"echo 'secrets.py' >> .gitignore")
     os.system('git add .')
     os.system("git commit -m 'Initial Commit'")
     os.system('git branch -m main')
