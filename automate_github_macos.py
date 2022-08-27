@@ -4,7 +4,7 @@ import requests
 import argparse
 import os
 from pprint import pprint
-from secrets import githubAPIToken, REPO_PATH
+from secrets import Secrets
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--name", "-n", type=str,dest="name",required=True)
@@ -18,7 +18,7 @@ apiUrl = 'https://api.github.com'
 data = '{"name": "' + repoName + '", "private": true}' if isPrivate else '{"name": "' + repoName + '", "private": false}'
 
 headers = {
-    'Authorization': f'token {githubAPIToken}',
+    'Authorization': f'token {Secrets.githubAPIToken}',
     'Accept': 'application/vnd.github.v3+json'
 }
 
@@ -34,12 +34,12 @@ except Exception as e:
 
 # creating local repository and connect with the created remote one from above
 try:
-    repoPath = REPO_PATH
+    repoPath = Secrets.REPO_PATH
     os.chdir(repoPath)
     os.system(f'mkdir {repoName}')
     os.chdir(f'{repoPath}{repoName}')
     os.system('git init')
-    os.system(f'git remote add origin https://github.com/leozhang1/{repoName}.git')
+    os.system(f'git remote add origin git@github.com:leozhang1/{repoName}.git')
     os.system(f"echo '# {repoName}' >> README.md")
     os.system(f"echo '.DS_Store' >> .gitignore")
     os.system(f"echo '__pycache__' >> .gitignore")
