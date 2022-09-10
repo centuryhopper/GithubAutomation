@@ -1,12 +1,14 @@
 from github import Github
 from secrets import Secrets
 import os, argparse
+from dotenv import load_dotenv
+load_dotenv()
 
 
 
 
 def main():
-    g = Github(Secrets.githubAPIToken)
+    g = Github(os.getenv('githubAPIToken'))
 
     # repos = g.search_repositories(query='language:python')
     # for repo in g.get_user().get_repos():
@@ -25,7 +27,7 @@ def main():
 
     # creating local repository and connect with the created remote one from above
     try:
-        REPO_PATH = Secrets.REPO_PATH # change this line to be your desired local repo path
+        REPO_PATH = os.getenv('REPO_PATH') # change this line to be your desired local repo path
         os.chdir(REPO_PATH)
         os.system(f'mkdir {repoName}')
         os.chdir(f'{REPO_PATH}{repoName}')
