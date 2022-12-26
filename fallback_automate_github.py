@@ -1,8 +1,15 @@
 from github import Github
-#from secrets import Secrets
+import platform
+
+if platform.system() == "Linux":
+    import linux_tools as tools
+elif platform.system() == "Windows":
+    import windows_tools as tools
+
 import os, argparse
 from dotenv import load_dotenv
 load_dotenv()
+
 
 
 
@@ -27,7 +34,7 @@ def main():
 
     # creating local repository and connect with the created remote one from above
     try:
-        REPO_PATH = os.getenv('REPO_PATH') # change this line to be your desired local repo path
+        REPO_PATH = tools.REPO_PATH # change this line to be your desired local repo path
         os.chdir(REPO_PATH)
         os.system(f'mkdir {repoName}')
         os.chdir(f'{REPO_PATH}{repoName}')

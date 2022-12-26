@@ -1,5 +1,12 @@
 #!/usr/bin/env python3
 
+import platform
+
+if platform.system() == "Linux":
+    import linux_tools as tools
+elif platform.system() == "Windows":
+    import windows_tools as tools
+
 import requests
 import argparse
 import os
@@ -34,7 +41,7 @@ except Exception as e:
 
 # creating local repository and connect with the created remote one from above
 try:
-    repoPath = os.getenv('REPO_PATH')
+    repoPath = tools.REPO_PATH
     os.chdir(repoPath)
     os.system(f'mkdir {repoName}')
     os.chdir(f'{repoPath}{repoName}')
