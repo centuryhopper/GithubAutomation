@@ -42,15 +42,19 @@ def main():
         os.system(f'git remote add origin git@github.com:leozhang1/{repoName}.git') # change 'leozhang1' to your own github username
     #region files you want to add
         os.system(f"echo # {repoName} >> README.md")
-        os.system("echo "" >> .gitignore")
-
-    #endregion
-
-# python automate_github.py --name OpenCV_Practice_In_C++ python -m venv virtenv
+        os.system(f"echo '.DS_Store' >> .gitignore")
+        os.system(f"echo '__pycache__' >> .gitignore")
+        os.system(f"echo 'secrets.py' >> .gitignore")
         os.system('git add .')
         os.system('git commit -m "Initial Commit"')
         os.system('git branch -m main')
         os.system('git push -u origin main')
+        os.system('git checkout -b main_laptop')
+        os.system('git push -u origin main_laptop')
+
+    #endregion
+
+
     except FileExistsError as f:
         print(f)
     except Exception as e:
