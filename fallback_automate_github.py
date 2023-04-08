@@ -30,7 +30,7 @@ def main():
 
     # create a repo
     user = g.get_user()
-    repo = user.create_repo(repoName,private=True if isPrivate else False)
+    repo = user.create_repo(repoName,private=isPrivate)
 
     # creating local repository and connect with the created remote one from above
     try:

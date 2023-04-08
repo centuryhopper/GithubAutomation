@@ -22,7 +22,7 @@ repoName = args.name
 isPrivate = args.isPrivate
 
 apiUrl = 'https://api.github.com'
-data = '{"name": "' + repoName + '", "private": true}' if isPrivate else '{"name": "' + repoName + '", "private": false}'
+data = '{\"name\": \"%s\", \"private\": \"%s\"\}' % (repoName, str(isPrivate))
 
 headers = {
     'Authorization': f'token {os.getenv("githubAPIToken")}',
